@@ -1,0 +1,27 @@
+<!-- <nav class="navbar navbar-default navbar-fixed-top"> -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+	  <md-toolbar color="primary">
+	    Header Title
+
+	    <span class="app-toolbar-filler"></span>
+	    <div *ngIf="alreadyLogin">
+		    <button md-button routerLink="/material-controls" routerLinkActive="active">+</button>
+		    <button md-button>Items</button>
+		    <button md-button [md-menu-trigger-for]="userMenu">User</button>
+		    <md-menu #userMenu="mdMenu">
+		      <button md-menu-item>My Profile</button>
+		      <button md-menu-item>Settings</button>
+		      <button md-menu-item>Logout</button>
+		    </md-menu>
+	    </div>
+	    <div *ngIf="!alreadyLogin">
+	    	<button md-button>Login</button>
+	    </div>
+	  </md-toolbar>
+  </div>
+</nav>
+
+<div class="container-fluid body-container">
+  <router-outlet></router-outlet>
+</div>
