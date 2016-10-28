@@ -10,10 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var auth_guard_1 = require('./_guards/auth.guard');
+var login_component_1 = require('./login/login.component');
 var material_controls_component_1 = require('./features/test/material-controls.component');
 var routes = [
-    { path: '', redirectTo: '/material-controls', pathMatch: 'full' },
-    { path: 'material-controls', component: material_controls_component_1.MaterialControlsComponent }
+    { path: 'login', component: login_component_1.LoginComponent },
+    { path: '', component: material_controls_component_1.MaterialControlsComponent, canActivate: [auth_guard_1.AuthGuard] },
+    { path: '**', redirectTo: '' },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

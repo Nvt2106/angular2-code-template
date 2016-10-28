@@ -17,8 +17,11 @@ var material_1 = require('@angular/material');
 var app_routing_module_1 = require('./app-routing.module');
 // Imports for loading & configuring the in-memory web api
 var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
-var in_memory_data_service_1 = require('./mock-apis/in-memory-data.service');
+var in_memory_data_service_1 = require('./_mock-apis/in-memory-data.service');
+var authentication_service_1 = require('./_services/authentication.service');
+var auth_guard_1 = require('./_guards/auth.guard');
 var app_container_component_1 = require('./app-container.component');
+var login_component_1 = require('./login/login.component');
 var material_controls_component_1 = require('./features/test/material-controls.component');
 var AppModule = (function () {
     function AppModule() {
@@ -31,13 +34,17 @@ var AppModule = (function () {
                 http_1.HttpModule,
                 angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
                 app_routing_module_1.AppRoutingModule,
-                material_1.MaterialModule.forRoot()
+                material_1.MaterialModule.forRoot(),
             ],
             declarations: [
                 app_container_component_1.AppContainerComponent,
+                login_component_1.LoginComponent,
                 material_controls_component_1.MaterialControlsComponent
             ],
-            providers: [],
+            providers: [
+                authentication_service_1.AuthenticationService,
+                auth_guard_1.AuthGuard
+            ],
             bootstrap: [app_container_component_1.AppContainerComponent]
         }), 
         __metadata('design:paramtypes', [])

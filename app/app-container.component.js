@@ -11,8 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AppContainerComponent = (function () {
     function AppContainerComponent() {
-        this.alreadyLogin = true;
+        this.alreadyLogin = false;
     }
+    AppContainerComponent.prototype.ngOnInit = function () {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (this.currentUser) {
+            this.currentUser.full_name = this.currentUser.getFullName();
+            this.alreadyLogin = true;
+        }
+    };
     AppContainerComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

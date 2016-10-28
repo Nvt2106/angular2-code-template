@@ -7,8 +7,13 @@ import { MaterialModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './mock-apis/in-memory-data.service';
+import { InMemoryDataService }  from './_mock-apis/in-memory-data.service';
+import { AuthenticationService }  from './_services/authentication.service';
+
+import { AuthGuard } from './_guards/auth.guard';
+
 import { AppContainerComponent } from './app-container.component';
+import { LoginComponent } from './login/login.component';
 import { MaterialControlsComponent } from './features/test/material-controls.component';
 
 @NgModule({
@@ -18,13 +23,16 @@ import { MaterialControlsComponent } from './features/test/material-controls.com
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
   ],
   declarations: [
     AppContainerComponent,
+    LoginComponent,
     MaterialControlsComponent
   ],
   providers: [
+    AuthenticationService,
+    AuthGuard
   ],
   bootstrap: [ AppContainerComponent ]
 })

@@ -7,16 +7,15 @@
 	    <span class="app-toolbar-filler"></span>
 	    <div *ngIf="alreadyLogin">
 		    <button md-button routerLink="/material-controls" routerLinkActive="active">+</button>
-		    <button md-button>Items</button>
-		    <button md-button [md-menu-trigger-for]="userMenu">User</button>
+		    <button md-button routerLink="/items">Items</button>
+		    <button md-button [md-menu-trigger-for]="userMenu">{{ currentUser.full_name }}</button>
 		    <md-menu #userMenu="mdMenu">
 		      <button md-menu-item>My Profile</button>
-		      <button md-menu-item>Settings</button>
 		      <button md-menu-item>Logout</button>
 		    </md-menu>
 	    </div>
 	    <div *ngIf="!alreadyLogin">
-	    	<button md-button>Login</button>
+	    	<button md-button routerLink="/login">Login</button>
 	    </div>
 	  </md-toolbar>
   </div>
