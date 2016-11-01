@@ -13,10 +13,11 @@ var router_1 = require('@angular/router');
 var authentication_service_1 = require('../_services/authentication.service');
 var app_container_component_1 = require('../app-container.component');
 var GoogleLoginComponent = (function () {
-    function GoogleLoginComponent(router, authenticationService, appContainer) {
+    function GoogleLoginComponent(router, authenticationService, appContainer, appRef) {
         this.router = router;
         this.authenticationService = authenticationService;
         this.appContainer = appContainer;
+        this.appRef = appRef;
     }
     // Angular hook that allows for interaction with elements inserted by the rendering of a view
     GoogleLoginComponent.prototype.ngAfterViewInit = function () {
@@ -61,6 +62,7 @@ var GoogleLoginComponent = (function () {
                 // login successful
                 _this.appContainer.reload();
                 _this.router.navigate(['/']);
+                _this.appRef.tick();
             }
             else {
             }
@@ -75,7 +77,7 @@ var GoogleLoginComponent = (function () {
             selector: 'google-login',
             templateUrl: 'googlelogin.component.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, app_container_component_1.AppContainerComponent])
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService, app_container_component_1.AppContainerComponent, core_1.ApplicationRef])
     ], GoogleLoginComponent);
     return GoogleLoginComponent;
 }());

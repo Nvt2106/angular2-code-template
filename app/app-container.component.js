@@ -25,11 +25,8 @@ var AppContainerComponent = (function () {
         var savedUser = JSON.parse(localStorage.getItem('currentUser'));
         if (savedUser) {
             this.currentUser = new user_1.User();
-            this.currentUser.username = savedUser.username;
-            this.currentUser.token = savedUser.token;
-            // TODO
-            this.currentUser.first_name = 'Tuan';
-            this.currentUser.last_name = 'Nguyen';
+            this.currentUser.first_name = savedUser.first_name;
+            this.currentUser.last_name = savedUser.last_name;
             this.currentUser.full_name = this.currentUser.getFullName();
             this.alreadyLogin = true;
         }
@@ -39,10 +36,6 @@ var AppContainerComponent = (function () {
         this.alreadyLogin = false;
         this.router.navigate(['/login']);
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], AppContainerComponent.prototype, "alreadyLogin", void 0);
     AppContainerComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

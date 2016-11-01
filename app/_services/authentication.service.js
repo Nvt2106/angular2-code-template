@@ -39,7 +39,7 @@ var AuthenticationService = (function () {
             //     return false;
             // }
             // TODO: for testing only
-            localStorage.setItem('currentUser', JSON.stringify({ username: 'nvt2106', token: '123' }));
+            localStorage.setItem('currentUser', JSON.stringify({ username: 'nvt2106', token: '123', first_name: 'Tuan', last_name: 'Nguyen' }));
             return true;
         });
     };

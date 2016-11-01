@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ApplicationRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../_services/authentication.service';
@@ -17,7 +17,8 @@ export class FacebookLoginComponent {
 
     constructor(private router: Router,
         private authenticationService: AuthenticationService,
-        private appContainer: AppContainerComponent) {
+        private appContainer: AppContainerComponent,
+        private appRef: ApplicationRef) {
 
         FB.init({
             appId      : '1050842591695353',
@@ -46,6 +47,8 @@ export class FacebookLoginComponent {
                         this.appContainer.reload();
                         
                         this.router.navigate(['/']);
+
+                        this.appRef.tick();
                     } else {
                         // login failed
                         // TODO

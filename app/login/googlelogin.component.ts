@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ApplicationRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../_services/authentication.service';
@@ -18,7 +18,8 @@ export class GoogleLoginComponent {
 
     constructor(private router: Router,
         private authenticationService: AuthenticationService,
-        private appContainer: AppContainerComponent) { }
+        private appContainer: AppContainerComponent,
+        private appRef: ApplicationRef) { }
 
     // Angular hook that allows for interaction with elements inserted by the rendering of a view
     ngAfterViewInit() {
@@ -67,8 +68,11 @@ export class GoogleLoginComponent {
                 if (result === true) {
                     // login successful
                     this.appContainer.reload();
-                    
+
                     this.router.navigate(['/']);
+
+                    this.appRef.tick();
+                    
                 } else {
                     // login failed
                     // TODO

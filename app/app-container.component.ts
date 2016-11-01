@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable, Input } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from './_models/user';
@@ -13,9 +13,8 @@ import { AuthenticationService } from './_services/authentication.service';
 
 @Injectable()
 export class AppContainerComponent {
-  @Input()
   alreadyLogin = false;
-  
+
   currentUser: User;
 
   constructor(
@@ -31,12 +30,8 @@ export class AppContainerComponent {
     
     if (savedUser) {
       this.currentUser = new User();
-      this.currentUser.username = savedUser.username;
-      this.currentUser.token = savedUser.token;
-
-      // TODO
-      this.currentUser.first_name = 'Tuan';
-      this.currentUser.last_name = 'Nguyen';
+      this.currentUser.first_name = savedUser.first_name;
+      this.currentUser.last_name = savedUser.last_name;
       this.currentUser.full_name = this.currentUser.getFullName();
       
       this.alreadyLogin = true;
