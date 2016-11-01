@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map'
+// import 'rxjs/add/operator/map'
+// import 'rxjs/add/operator/toPromise';
  
 @Injectable()
 export class AuthenticationService {
@@ -14,24 +15,30 @@ export class AuthenticationService {
     }
  
     login(source, token): Observable<boolean> {
-        return this.http.post('/api/authenticate', JSON.stringify({ source: source, token: token }))
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('/app/heroes', JSON.stringify({ source: source, token: token }), options)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
-                let token = response.json() && response.json().token;
-                if (token) {
-                    // set token property
-                    this.token = token;
+                // let token = response.json() && response.json().token;
+                // if (token) {
+                //     // set token property
+                //     this.token = token;
  
-                    // store username and jwt token in local storage to keep user logged in between page refreshes
-                    let username = response.json() && response.json().username;
-                    localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+                //     // store username and jwt token in local storage to keep user logged in between page refreshes
+                //     let username = response.json() && response.json().username;
+                //     localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
  
-                    // return true to indicate successful login
-                    return true;
-                } else {
-                    // return false to indicate failed login
-                    return false;
-                }
+                //     // return true to indicate successful login
+                //     return true;
+                // } else {
+                //     // return false to indicate failed login
+                //     return false;
+                // }
+
+                // TODO: for testing only
+                localStorage.setItem('currentUser', JSON.stringify({ username: 'nvt2106', token: '123' }));
+                return true;
             });
     }
  

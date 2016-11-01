@@ -11,7 +11,7 @@
 		    <button md-button [md-menu-trigger-for]="userMenu">{{ currentUser.full_name }}</button>
 		    <md-menu #userMenu="mdMenu">
 		      <button md-menu-item>My Profile</button>
-		      <button md-menu-item>Logout</button>
+		      <button md-menu-item (click)="logout()">Logout</button>
 		    </md-menu>
 	    </div>
 	    <div *ngIf="!alreadyLogin">

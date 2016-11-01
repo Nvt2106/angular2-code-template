@@ -9,25 +9,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var user_1 = require('./_models/user');
+var authentication_service_1 = require('./_services/authentication.service');
 var AppContainerComponent = (function () {
-    function AppContainerComponent() {
+    function AppContainerComponent(router, authenticationService) {
+        this.router = router;
+        this.authenticationService = authenticationService;
         this.alreadyLogin = false;
     }
     AppContainerComponent.prototype.ngOnInit = function () {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (this.currentUser) {
+        this.reload();
+    };
+    AppContainerComponent.prototype.reload = function () {
+        var savedUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (savedUser) {
+            this.currentUser = new user_1.User();
+            this.currentUser.username = savedUser.username;
+            this.currentUser.token = savedUser.token;
+            // TODO
+            this.currentUser.first_name = 'Tuan';
+            this.currentUser.last_name = 'Nguyen';
             this.currentUser.full_name = this.currentUser.getFullName();
             this.alreadyLogin = true;
         }
     };
+    AppContainerComponent.prototype.logout = function () {
+        this.authenticationService.logout();
+        this.alreadyLogin = false;
+        this.router.navigate(['/login']);
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AppContainerComponent.prototype, "alreadyLogin", void 0);
     AppContainerComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'main-app',
             templateUrl: 'app-container.component.html',
             styleUrls: ['app-container.component.css']
-        }), 
-        __metadata('design:paramtypes', [])
+        }),
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
     ], AppContainerComponent);
     return AppContainerComponent;
 }());

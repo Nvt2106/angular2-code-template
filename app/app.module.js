@@ -22,6 +22,8 @@ var authentication_service_1 = require('./_services/authentication.service');
 var auth_guard_1 = require('./_guards/auth.guard');
 var app_container_component_1 = require('./app-container.component');
 var login_component_1 = require('./login/login.component');
+var facebooklogin_component_1 = require('./login/facebooklogin.component');
+var googlelogin_component_1 = require('./login/googlelogin.component');
 var material_controls_component_1 = require('./features/test/material-controls.component');
 var AppModule = (function () {
     function AppModule() {
@@ -39,6 +41,8 @@ var AppModule = (function () {
             declarations: [
                 app_container_component_1.AppContainerComponent,
                 login_component_1.LoginComponent,
+                facebooklogin_component_1.FacebookLoginComponent,
+                googlelogin_component_1.GoogleLoginComponent,
                 material_controls_component_1.MaterialControlsComponent
             ],
             providers: [

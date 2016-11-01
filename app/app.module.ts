@@ -14,6 +14,8 @@ import { AuthGuard } from './_guards/auth.guard';
 
 import { AppContainerComponent } from './app-container.component';
 import { LoginComponent } from './login/login.component';
+import { FacebookLoginComponent } from './login/facebooklogin.component';
+import { GoogleLoginComponent } from './login/googlelogin.component';
 import { MaterialControlsComponent } from './features/test/material-controls.component';
 
 @NgModule({
@@ -28,6 +30,8 @@ import { MaterialControlsComponent } from './features/test/material-controls.com
   declarations: [
     AppContainerComponent,
     LoginComponent,
+    FacebookLoginComponent,
+    GoogleLoginComponent,
     MaterialControlsComponent
   ],
   providers: [

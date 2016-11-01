@@ -9,42 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
 var authentication_service_1 = require('../_services/authentication.service');
 var LoginComponent = (function () {
-    function LoginComponent(router, authenticationService) {
-        this.router = router;
+    function LoginComponent(authenticationService) {
         this.authenticationService = authenticationService;
-        this.loading = false;
-        this.error = '';
     }
     LoginComponent.prototype.ngOnInit = function () {
         // reset login status
         this.authenticationService.logout();
-    };
-    LoginComponent.prototype.login = function () {
-        var _this = this;
-        this.loading = true;
-        // TODO: 
-        this.authenticationService.login('source', 'token')
-            .subscribe(function (result) {
-            if (result === true) {
-                // login successful
-                _this.router.navigate(['/']);
-            }
-            else {
-                // login failed
-                _this.error = 'Login failed';
-                _this.loading = false;
-            }
-        });
     };
     LoginComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             templateUrl: 'login.component.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
     ], LoginComponent);
     return LoginComponent;
 }());
